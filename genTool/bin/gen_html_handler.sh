@@ -26,5 +26,5 @@ $bin_dir/data_export.sh
 ######################################################################
 # Call C core to generate the html files
 ######################################################################
-$bin_dir/genhtml $new_data_file $all_topic_file $output_dir $tmp_dir
+#$bin_dir/genhtml $new_data_file $all_topic_file $output_dir $tmp_dir
 
