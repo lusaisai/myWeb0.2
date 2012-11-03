@@ -16,6 +16,6 @@ while( $row = $result->fetch_object()) {
 	$music_ids = $music_ids . "," . $row->music_id;
 }
 
-echo '<h3>随便听听 ...</h3>' . $embed_pre . $music_ids . $embed_suf;
+echo '<h3>推荐我喜欢的音乐 ...</h3>' . $embed_pre . $music_ids . $embed_suf;
 $mysqli->close();
 ?>

@@ -4,7 +4,7 @@
 ######################################################################
 # Initialize the parameters
 ######################################################################
-gen_home_dir="/home/lusaisai/wwwLearning/myweb0.1/genTool"
+gen_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/genTool"
 output_dir="$gen_home_dir/output_html"
 last_dir="$gen_home_dir/latest_html"
 upload_dir="$gen_home_dir/upload_html"
@@ -61,21 +61,17 @@ done < $diff_result_file
 ######################################################################
 # Push to bluehost and copy the uploaded files to the latest dir
 ######################################################################
-echo "Push new code to im633.com?(Y/y)"
+echo "Compress files..."
+tar -zcf $upload_zip_file *
+echo "Scp file to im633.com and extract..."
+scp $upload_zip_file imsixthr@im633.com:/home7/imsixthr/public_html
+ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;tar -xzf upload.tar.gz"
+echo "Copy uploaded files to the latest dir"
+cp -r $upload_dir/* $last_dir
+echo "Copying done!"
+echo "Generating List<-->Music ids"
+$gen_home_dir/bin/get_list_music_id_map.sh
 
-read x
-if [ "$x" = "y" -o "$x" = "Y" ]; then
-   echo "Compress files..."
-   tar -zcf $upload_zip_file *
-   echo "Scp file to im633.com and extract..."
-   scp $upload_zip_file imsixthr@im633.com:/home7/imsixthr/public_html
-   ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;tar -xzf upload.tar.gz"
-   echo "Copy uploaded files to the latest dir"
-	cp -r $upload_dir/* $last_dir
-	echo "Copying done!"
-	echo "Generating List<-->Music ids"
-   $gen_home_dir/bin/get_list_music_id_map.sh
-fi
 
 
 exit 0
