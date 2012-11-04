@@ -10,7 +10,7 @@ sys	0m0.090s
 
 
 
-=================Previous BSAH Version====================
+=================Previous BASH Version====================
 [lusaisai@CentOS bin]$ time ./test.sh 
 Copying common use files
 Generating html blocks
