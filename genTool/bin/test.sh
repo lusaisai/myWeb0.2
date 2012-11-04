@@ -1,86 +1,56 @@
-#! /bin/bash -ex
+#! /bin/bash -eu
 
 ######################################################################
-# Initialize the parameters
+# Parameters and initializing
 ######################################################################
-export mysql_host="localhost"
-export mysql_user="myweb"
-export mysql_pass="myweb"
-export mysql_db="myweb01"
-export gen_home_dir="/home/lusaisai/wwwLearning/myweb0.1/genTool"
-export output_dir="$gen_home_dir/output_html"
-export output_css="$output_dir/css"
-export output_img="$output_dir/images"
-export output_js="$output_dir/js"
-export output_php="$output_dir/php"
-export cfg_dir="$gen_home_dir/cfg"
-export sql_dir="$gen_home_dir/sql"
-export tmp_dir="$gen_home_dir/tmp"
-export mysql_connect_str="mysql --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-column-names $mysql_db"
-export count_in_onepage=5
-export default_page_title="陆赛赛的网络小屋"
-#export domain="http://im633.com"
-export domain=$output_dir
+export gen_home_dir=/home/lusaisai/wwwLearning/myWeb0.2/genTool
+export bin_dir=$gen_home_dir/bin
+export output_dir=$gen_home_dir/output_html
+export output_css=$output_dir/css
+export output_img=$output_dir/images
+export output_js=$output_dir/js
+export output_php=$output_dir/php
+export cfg_dir=$gen_home_dir/cfg
+export tmp_dir=$gen_home_dir/tmp
+export last_extract_file=$cfg_dir/gen_html.last_extract_value.dat
+export last_extract_value=$( < $cfg_dir/gen_html.last_extract_value.dat )
+export new_data_file=$tmp_dir/new_data.txt
+export all_topic_file=$tmp_dir/all_topic.txt
+mkdir -p $output_dir
+cd $output_dir
+mkdir -p blog css feed fun images js music mv others php soccer software topics
 
-page_count=2
-current_page=2
+######################################################################
+# Call mysql to export latest data and all the topic list
+######################################################################
+echo "Call MYSQL exporting ..."
+$bin_dir/data_export.sh
 
-
-function gen_page_links {
-i=1
-middle_start_point=$((current_page - 5))
-middle_end_point=$((current_page + 5))
-while [ $i -le $page_count ]
-do
-if [[ $i == 1 && $current_page == 1 ]]; then
-cat << EOF
-<div>
-<a id="currentpagelinks" class="pagelinks" href="$domain/${page_dir}index.html" >$i</a>
-EOF
-
-elif [[ $i == 1 && $current_page != 1 ]]; then
-cat << EOF
-<div>
-<a class="pagelinks" href="$domain/${page_dir}index.html" >$i</a>
-EOF
-
-else
-
-	if [[ $middle_start_point > 2 ]]; then
-cat << EOF
-<div>
-<span class="pagelinks">...</span>
-EOF
-i=$middle_start_point
-	fi
-
-	if [ $((middle_end_point + 1)) -lt $page_count ];then
-		 if [ $i -eq $((middle_end_point + 1)) ];then
-cat << EOF
-<div>
-<span class="pagelinks">...</span>
-EOF
-		 i=$page_count
-		 fi
-	fi
-
-	if [[ $i == $current_page ]]; then
-cat << EOF
-<div>
-<a id="currentpagelinks" class="pagelinks" href="$domain/${page_dir}index.html" >$i</a>
-EOF
-	else
-cat << EOF
-<div>
-<a class="pagelinks" href="$domain/${page_dir}index.html" >$i</a>
-EOF
-	fi
-
+######################################################################
+# Call C core to generate the html files
+######################################################################
+echo "Call C Process ..."
+if [ -s $new_data_file ]; then
+    $bin_dir/genhtml $new_data_file $all_topic_file $output_dir $tmp_dir
 fi
 
-((i+=1))
-done
-}
 
-gen_page_links
-
+######################################################################
+# File deploying
+######################################################################
+echo "File deploying"
+cp $cfg_dir/*png $output_img
+cp $cfg_dir/*ico $output_dir
+cp $cfg_dir/*php $output_php
+cp $cfg_dir/*.php $output_dir
+cp $cfg_dir/*.php $output_dir/blog
+cp $cfg_dir/*.php $output_dir/fun
+cp $cfg_dir/*.php $output_dir/music
+cp $cfg_dir/*.php $output_dir/mv
+cp $cfg_dir/*.php $output_dir/others
+cp $cfg_dir/*.php $output_dir/soccer
+cp $cfg_dir/*.php $output_dir/software
+cp $cfg_dir/*.php $output_dir/topics
+cp $cfg_dir/*js $output_js
+cp $cfg_dir/*css $output_css
+cp $tmp_dir/*js $output_js

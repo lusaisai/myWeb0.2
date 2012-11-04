@@ -1,0 +1,40 @@
+=================C Version======================
+[lusaisai@CentOS bin]$ time ./test.sh 
+Call MYSQL exporting ...
+Call C Process ...
+File deploying
+
+real	0m0.291s
+user	0m0.075s
+sys	0m0.090s
+
+
+
+=================Previous BSAH Version====================
+[lusaisai@CentOS bin]$ time ./test.sh 
+Copying common use files
+Generating html blocks
+Generating main pages...
+Generating music pages...
+Generating soccer pages...
+Generating mv pages...
+Generating others pages...
+Generating fun pages...
+Generating software pages...
+Generating blog pages...
+
+real	0m37.904s
+user	0m8.780s
+sys	0m15.361s
+
+
+==================Summary=======================
+C has an amazing performance improvement:
+[lusaisai@CentOS bin]$ python
+Python 2.6.6 (r266:84292, Sep 11 2012, 08:34:23) 
+[GCC 4.4.6 20120305 (Red Hat 4.4.6-4)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> (15.361+8.780)/(0.075+0.090)
+146.30909090909091
+>>> 
+
