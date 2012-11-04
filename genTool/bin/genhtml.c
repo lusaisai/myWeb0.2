@@ -26,6 +26,8 @@
 #define DEFAULT_PAGE_TITLE "陆赛赛的网络小屋"
 #define TOPIC_KIND_CNT (7+1)    //7 kind of pages + the main page
 #define ONEPAGE_TOPIC_CNT 5     //topic count in a single page
+#define DOMAIN "http://im633.com" // my website
+#define RSS_CNT 10 // The topic count the RSS feed
  
 /* The type represents a record of a single list, one line in the new data file */
 typedef struct list_info_s {
@@ -394,8 +396,11 @@ void gen_html_page( FILE * all_topic_fp, char * output_dir, char * tmp_dir) {
     char line[NORMALLEN];
     int topic_seq[TOPIC_KIND_CNT][NORMALLEN]; //This two-dimension array will have a sequence of the topic id
     topic_info_t topic;
-    char css_fn[NORMALLEN];
+    char css_fn[NORMALLEN]; //css file for all the topics
     FILE * css_fp;
+    char rss_fn[NORMALLEN]; // The feed
+    FILE * rss_fp;
+    int rss_index = 0;
     int css_len;
     
     /* Calculate the count */
@@ -407,20 +412,39 @@ void gen_html_page( FILE * all_topic_fp, char * output_dir, char * tmp_dir) {
         fprintf(stderr, "Failed to open file %s\n", css_fn);
     }
     
+    /* Open the rss file */
+    sprintf(rss_fn, "%s/feed/rss.xml", output_dir);
+    if ( ( rss_fp = fopen(rss_fn, "w") ) == NULL ) {
+        fprintf(stderr, "Failed to open file %s\n", rss_fn);
+    } else { // Print the rss feed html header
+        fprintf(rss_fp, "<?xml version=\"1.0\" encoding=\"utf8\" ?><rss version=\"2.0\"><channel><title>陆赛赛的网络小屋</title><link>http://www.im633.com</link><description>音乐，影音，足球，软件...一切值得珍藏的</description>\n");
+    }
+    
+    
     /* Read each line and create pages  */
     rewind(all_topic_fp);
     while ( fgets(line, NORMALLEN, all_topic_fp ) != NULL ) {
         pop_topic_record(line, &topic);
         create_pages( &topic, topic_count, single_page_index, output_file, page_dir, output_dir, topic_seq, tmp_dir );
+        // Generate the css file
         css_len = (topic.max_byte_length - topic.max_char_length) / 2 + (3 * topic.max_char_length - topic.max_byte_length) / 2 * 0.5 + 2;
         fprintf(css_fp, "#topic%d li {width: %dem}\n", topic.topic_id, css_len);
         if ( topic.topic_type_id >= 5 ) {
             fprintf(css_fp, "#topic%d {max-height:700px;overflow:scroll;}\n", topic.topic_id);
         }
+        // Generate the rss file
+        if ( rss_index < RSS_CNT ) {
+            fprintf(rss_fp, "<item><title>%s</title><link>%s/topics/topic_%d.html</link><description>%s</description><guid>%s/topics/topic_%d.html</guid></item>\n",
+                    topic.topic_name, DOMAIN, topic.topic_id, topic.topic_name, DOMAIN, topic.topic_id  );
+            rss_index++;
+        }
     }
     
+    //close the css file
     fclose(css_fp);
- 
+    //close the rss feed
+    fprintf(rss_fp, "</channel></rss>");
+    fclose(rss_fp);
 }
 
 /*

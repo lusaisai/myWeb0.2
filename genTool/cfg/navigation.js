@@ -30,7 +30,7 @@ $(function() {
 ;
 
 $('#randomListen li').click(function() {
-	$('#musicPlayer').load("randomListen.php");
+	$('#musicPlayer').load("randomListen.php", "autoplay=1");
 	});
 
 var $scrollingDiv = $("#left_panel");
