@@ -43,8 +43,10 @@ done < $original_file
 # Load into Database
 ######################################################################
 echo "Loading ..."
-query="delete from myweb01.d_id_map; LOAD DATA LOCAL INFILE '$output_file' INTO TABLE myweb01.d_id_map FIELDS TERMINATED BY ' '"
+query="delete from myweb01.d_id_map;"
 $mysql_connect_str --execute="$query"
+query="LOAD DATA LOCAL INFILE '$output_file' INTO TABLE myweb01.d_id_map FIELDS TERMINATED BY ' '"
+$mysql_connect_str  --local-infile=1 --execute="$query"
 
 
 ######################################################################

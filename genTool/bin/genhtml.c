@@ -263,7 +263,7 @@ void print_block_head( FILE * block_fp, FILE * all_topic_fp, list_info_t * list 
         case 1://音乐
             fprintf(block_fp, "<div class=\"albumImageWrapper\"><img src=\"%s\" class=\"albumImage\"></div>\n", list->list_image_loc);
             fprintf(block_fp, "<span class=\"music listtxt\">%s</span>\n", list->list_desc);
-            fprintf(block_fp, "<ul class=\"list\">\n", list->list_id);
+            fprintf(block_fp, "<ul class=\"list\">\n");
             break;
         case 6://博客
             fprintf(block_fp, "<span class=\"listtxt\">%s</span>\n", list->list_desc);
@@ -271,7 +271,7 @@ void print_block_head( FILE * block_fp, FILE * all_topic_fp, list_info_t * list 
         default:
 
             fprintf(block_fp, "<span class=\"listtxt\">%s</span>%s\n", list->list_desc, list->list_outer_link);
-            fprintf(block_fp, "<ul class=\"list\">\n", list->list_id);
+            fprintf(block_fp, "<ul class=\"list\">\n");
             break;
     }
 }
@@ -453,7 +453,6 @@ void gen_html_page( FILE * all_topic_fp, char * output_dir, char * tmp_dir) {
  * The input is one topic
 */
 void create_pages( topic_info_t * topic, int * topic_count, int * single_page_index, FILE ** output_file, char ** page_dir, char * output_dir, int topic_seq[][NORMALLEN], char * tmp_dir ){
-    char topic_file[NORMALLEN];
     char filename[NORMALLEN];
     FILE * single_fp;
     int page_cnt;

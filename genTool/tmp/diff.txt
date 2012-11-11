@@ -1,2 +1,1 @@
-Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/feed: rss.xml
 Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html: upload.tar.gz

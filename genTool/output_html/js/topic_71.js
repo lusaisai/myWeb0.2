@@ -1,0 +1,3 @@
+$( function() {
+$('#list335').mouseover(function() {$('#topic71 img').attr('src', 'http://img.xiami.com/images/artist//12148060274198_2.jpg');$('#topic71 span.listtxt').html('GiGi的歌声很清新，很抒情，还记得以前第一次听《中意他》的时候，一下子就觉得“咦，这歌真好听”。');});
+$('#list335').click(function() {$('#musicPlayer').html('<h3>梁咏琪精选</h3><embed src="http://www.xiami.com/widget/4097932_124532,124551,2112682,124549,124920,380117,124547,124544,124479,124481,124840,124550,124541,124530,124529,124488,124472,3620144,1771130796,_235_346_000000_494949_1/multiPlayer.swf" type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"></embed>');$('#topic71 li').css('color', '#000000');$('#list335').css('color', '#CC0052');});});
