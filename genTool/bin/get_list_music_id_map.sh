@@ -7,14 +7,26 @@ mysql_host="localhost"
 mysql_user="myweb"
 mysql_pass="myweb"
 mysql_db="myweb01"
-gen_home_dir="/home/lusaisai/wwwLearning/myweb0.1/genTool"
+gen_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/genTool"
 tmp_dir="$gen_home_dir/tmp"
+cfg_dir=$gen_home_dir/cfg
+last_extract_file=$cfg_dir/list_music_map.last_extract_value.dat
+last_extract_value=$( < $last_extract_file )
 original_file="$tmp_dir/list_embed_map.txt"
 output_file="$tmp_dir/list_music_id_map.txt"
 mysql_connect_str="mysql --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-column-names $mysql_db"
 query="select
 concat_ws( 0x07, l.list_id, l.list_outer_link)
 from f_topic t
+join (
+select
+t.topic_id
+from f_topic t
+join ( select topic_id, max(modified_ts) as modified_ts from f_topic_list group by 1 ) l
+on    t.topic_id = l.topic_id
+where greatest(t.modified_ts, l.modified_ts) >= '$last_extract_value'
+) n
+on   t.topic_id = n.topic_id
 join d_topic_type d
 on   t.topic_type_id = d.topic_type_id
 join f_topic_list l
@@ -22,6 +34,7 @@ on   t.topic_id = l.topic_id
 where d.topic_type_desc = '音乐'
 ;
 "
+
 
 ######################################################################
 # Process the data
@@ -43,20 +56,34 @@ done < $original_file
 # Load into Database
 ######################################################################
 echo "Loading ..."
-query="delete from myweb01.d_id_map;"
-$mysql_connect_str --execute="$query"
-query="LOAD DATA LOCAL INFILE '$output_file' INTO TABLE myweb01.d_id_map FIELDS TERMINATED BY ' '"
+query="delete from myweb01.stg_d_id_map_w;
+LOAD DATA LOCAL INFILE '$output_file' INTO TABLE myweb01.stg_d_id_map_w FIELDS TERMINATED BY ' ';
+delete t from myweb01.d_id_map t join myweb01.stg_d_id_map_w w where w.music_id = t.music_id; 
+insert into myweb01.d_id_map(list_id, music_id) select list_id, music_id from myweb01.stg_d_id_map_w;"
 $mysql_connect_str  --local-infile=1 --execute="$query"
-
 
 ######################################################################
 # Send to Remote
 ######################################################################
-echo "Sending to remote ..."
-query="delete from imsixthr_myweb01.d_id_map; LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE imsixthr_myweb01.d_id_map FIELDS TERMINATED BY ' '"
-gzip -f $output_file
-scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
-ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | mysql --database=imsixthr_myweb01 -u imsixthr_myweb -pimsixthr_myweb"
+#echo "Sending to remote ..."
+#query="delete from imsixthr_myweb01.stg_d_id_map_w; 
+#LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE imsixthr_myweb01.std_d_id_map_w FIELDS TERMINATED BY ' ';
+#delete t from imsixthr_myweb01.d_id_map t join imsixthr_myweb01.stg_d_id_map_w w where w.music_id = t.music_id; 
+#insert into imsixthr_myweb01.d_id_map(list_id, music_id) select list_id, music_id from imsixthr_myweb01.stg_d_id_map_w;
+#"
+#gzip -f $output_file
+#scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
+#ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | mysql --database=imsixthr_myweb01 -u imsixthr_myweb -pimsixthr_myweb"
 
-echo "Complete!"
+######################################################################
+# Post Jobs
+######################################################################
+# Update last extract value
+echo "Complete!
+Update the last extract value?(Y/y)"
+read x
+if [ "$x" = "y" -o "$x" = "Y" ]; then
+	date +'%F %R:%S' > $last_extract_file
+	echo "Updated!"
+fi
 
