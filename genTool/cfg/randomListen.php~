@@ -5,7 +5,7 @@ header("Cache-Control: post-check=0, pre-check=0", false);
 header("Pragma: no-cache");
 $query = "select music_id from d_id_map order by rand() limit 15;";
 $embed_pre='<embed src="http://www.xiami.com/widget/4097932_';
-if(!isset($_GET["autoplay"]);) {
+if(!isset($_GET["autoplay"])) {
 	$autoplay = '0';
 } else {
 	$autoplay = $_GET["autoplay"];

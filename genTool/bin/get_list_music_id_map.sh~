@@ -4,14 +4,14 @@
 # Initialize the parameters
 ######################################################################
 mysql_host="localhost"
-mysql_user="myweb"
-mysql_pass="myweb"
-mysql_db="myweb01"
+mysql_user="imsixthr_myweb"
+mysql_pass="imsixthr_myweb"
+mysql_db="imsixthr_myweb02"
 gen_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/genTool"
 tmp_dir="$gen_home_dir/tmp"
 cfg_dir=$gen_home_dir/cfg
 last_extract_file=$cfg_dir/list_music_map.last_extract_value.dat
-last_extract_value=$( < $cfg_dir/list_music_map.last_extract_value.dat )
+last_extract_value=$( < $last_extract_file )
 original_file="$tmp_dir/list_embed_map.txt"
 output_file="$tmp_dir/list_music_id_map.txt"
 mysql_connect_str="mysql --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-column-names $mysql_db"
@@ -56,24 +56,24 @@ done < $original_file
 # Load into Database
 ######################################################################
 echo "Loading ..."
-query="delete from myweb01.stg_d_id_map_w;
-LOAD DATA LOCAL INFILE '$output_file' INTO TABLE myweb01.stg_d_id_map_w FIELDS TERMINATED BY ' ';
-delete t from myweb01.d_id_map t join myweb01.stg_d_id_map_w w where w.music_id = t.music_id; 
-insert into myweb01.d_id_map(list_id, music_id) select list_id, music_id from myweb01.stg_d_id_map_w;"
+query="delete from stg_d_id_map_w;
+LOAD DATA LOCAL INFILE '$output_file' INTO TABLE stg_d_id_map_w FIELDS TERMINATED BY ' ';
+delete t from d_id_map t join stg_d_id_map_w w where w.music_id = t.music_id; 
+insert into d_id_map(list_id, music_id) select list_id, music_id from stg_d_id_map_w;"
 $mysql_connect_str  --local-infile=1 --execute="$query"
 
 ######################################################################
 # Send to Remote
 ######################################################################
-#echo "Sending to remote ..."
-#query="delete from imsixthr_myweb01.stg_d_id_map_w; 
-#LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE imsixthr_myweb01.std_d_id_map_w FIELDS TERMINATED BY ' ';
-#delete t from imsixthr_myweb01.d_id_map t join imsixthr_myweb01.stg_d_id_map_w w where w.music_id = t.music_id; 
-#insert into imsixthr_myweb01.d_id_map(list_id, music_id) select list_id, music_id from imsixthr_myweb01.stg_d_id_map_w;
-#"
-#gzip -f $output_file
-#scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
-#ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | mysql --database=imsixthr_myweb01 -u imsixthr_myweb -pimsixthr_myweb"
+echo "Sending to remote ..."
+query="delete from stg_d_id_map_w; 
+LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE std_d_id_map_w FIELDS TERMINATED BY ' ';
+delete t from d_id_map t join stg_d_id_map_w w where w.music_id = t.music_id; 
+insert into d_id_map(list_id, music_id) select list_id, music_id from stg_d_id_map_w;
+"
+gzip -f $output_file
+scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
+ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | $mysql_connect_str"
 
 ######################################################################
 # Post Jobs

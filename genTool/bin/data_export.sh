@@ -1,9 +1,9 @@
 #! /bin/bash -eu
 
 mysql_host="localhost"
-mysql_user="myweb"
-mysql_pass="myweb"
-mysql_db="myweb01"
+mysql_user="imsixthr_myweb"
+mysql_pass="imsixthr_myweb"
+mysql_db="imsixthr_myweb02"
 mysql_connect_str="mysql --host=$mysql_host --user=$mysql_user --password=$mysql_pass --skip-column-names $mysql_db"
 new_data_query="
 select

@@ -13,7 +13,7 @@ if(!isset($_GET["autoplay"])) {
 
 $embed_suf='_235_346_000000_494949_' . $autoplay . '/multiPlayer.swf" type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"></embed>';
 
-$mysqli = new mysqli('localhost','imsixthr_myweb','imsixthr_myweb','imsixthr_myweb01');
+$mysqli = new mysqli('localhost','imsixthr_myweb','imsixthr_myweb','imsixthr_myweb02');
 $mysqli->set_charset("utf8");
 $result = $mysqli->query($query);
 $music_ids = '';

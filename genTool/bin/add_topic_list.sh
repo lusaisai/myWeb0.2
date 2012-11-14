@@ -4,10 +4,10 @@
 # Initialize the parameters
 ######################################################################
 export mysql_host="localhost"
-export mysql_user="myweb"
-export mysql_pass="myweb"
-export mysql_db="myweb01"
-export gen_home_dir="/home/lusaisai/wwwLearning/myweb0.1/genTool"
+export mysql_user="imsixthr_myweb"
+export mysql_pass="imsixthr_myweb"
+export mysql_db="imsixthr_myweb02"
+export gen_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/genTool"
 export output_dir="$gen_home_dir/output_html"
 export cfg_dir="$gen_home_dir/cfg"
 export sql_dir="$gen_home_dir/sql"

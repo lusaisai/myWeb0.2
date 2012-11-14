@@ -1,7 +1,7 @@
 <?php
 $username="imsixthr_myweb";
 $password="imsixthr_myweb";
-$database="imsixthr_myweb01";
+$database="imsixthr_myweb02";
 $dblink=mysql_connect(localhost,$username,$password);
 mysql_set_charset('utf8',$dblink); 
 @mysql_select_db($database) or die( "Unable to select database");

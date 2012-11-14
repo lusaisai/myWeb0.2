@@ -4,9 +4,9 @@
 # Initialize the parameters
 ######################################################################
 mysql_host="localhost"
-mysql_user="myweb"
-mysql_pass="myweb"
-mysql_db="myweb01"
+mysql_user="imsixthr_myweb"
+mysql_pass="imsixthr_myweb"
+mysql_db="imsixthr_myweb02"
 etl_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/etlTool"
 etl_out_dir="$etl_home_dir/output"
 etl_dat_dir="$etl_home_dir/dat"
@@ -95,7 +95,7 @@ if [ "$x" = "y" -o "$x" = "Y" ]; then
    gzip -f $sql_file
    echo "Scp file to im633.com and load..."
    scp $sql_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
-   ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${sql_file##*/}.gz; mysql --database=imsixthr_myweb01 -u imsixthr_myweb -pimsixthr_myweb --default-character-set=utf8 < ${sql_file##*/}"
+   ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${sql_file##*/}.gz; mysql --database=imsixthr_myweb02 -u imsixthr_myweb -pimsixthr_myweb --default-character-set=utf8 < ${sql_file##*/}"
    ######################################################################
    # Update last extract value
    ######################################################################

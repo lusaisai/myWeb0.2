@@ -69,9 +69,5 @@ ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;tar -xzf upload.tar.gz"
 echo "Copy uploaded files to the latest dir"
 cp -r $upload_dir/* $last_dir
 echo "Copying done!"
-echo "Generating List<-->Music ids"
-$gen_home_dir/bin/get_list_music_id_map.sh
-
-
 
 exit 0

@@ -4,9 +4,9 @@
 # Initialize the parameters
 ######################################################################
 mysql_host="localhost"
-mysql_user="myweb"
-mysql_pass="myweb"
-mysql_db="myweb01"
+mysql_user="imsixthr_myweb"
+mysql_pass="imsixthr_myweb"
+mysql_db="imsixthr_myweb02"
 gen_home_dir="/home/lusaisai/wwwLearning/myWeb0.2/genTool"
 bin_dir=$gen_home_dir/bin/HTMLParsing/bin
 tmp_dir=$gen_home_dir/tmp
@@ -51,15 +51,15 @@ $mysql_connect_str  --local-infile=1 --execute="$query"
 ######################################################################
 # Send to Remote
 ######################################################################
-#echo "Sending to remote ..."
-#query="delete from imsixthr_myweb01.stg_d_id_map_w; 
-#LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE imsixthr_myweb01.std_d_id_map_w FIELDS TERMINATED BY ' ';
-#delete t from imsixthr_myweb01.d_id_map t join imsixthr_myweb01.stg_d_id_map_w w where w.music_id = t.music_id; 
-#insert into imsixthr_myweb01.d_id_map(list_id, music_id) select list_id, music_id from imsixthr_myweb01.stg_d_id_map_w;
-#"
-#gzip -f $output_file
-#scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
-#ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | mysql --database=imsixthr_myweb01 -u imsixthr_myweb -pimsixthr_myweb"
+echo "Sending to remote ..."
+query="delete from stg_f_song_info_w;
+LOAD DATA LOCAL INFILE '/home7/imsixthr/public_html/${output_file##*/}' INTO TABLE stg_f_song_info_w character set UTF8 FIELDS TERMINATED BY 0x07;
+delete t from f_song_info t join stg_f_song_info_w w where w.song_id = t.song_id; 
+insert into f_song_info(song_id, title, artist, album, lyric) select song_id, title, artist, album, lyric from stg_f_song_info_w;"
+
+gzip -f $output_file
+scp $output_file.gz imsixthr@im633.com:/home7/imsixthr/public_html
+ssh imsixthr@im633.com "cd /home7/imsixthr/public_html;gunzip -f ${output_file##*/}.gz; echo \"$query\" | $mysql_connect_str"
 
 ######################################################################
 # Post Jobs

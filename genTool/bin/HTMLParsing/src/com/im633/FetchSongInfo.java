@@ -41,15 +41,11 @@ public class FetchSongInfo {
 			url = srcURL + line;
 			System.out.println(i + ": Parsing song id " + line);
 			
-			try {
-				si = parseURL(url); //call parsing method
-				si.setSongID(Long.parseLong(line)); // set the song id
-				si.setLyric(si.getLyric().replaceAll("\r|\n", "")); //replace new lines
-				out.write(si.toString());
-			} catch( java.net.SocketTimeoutException e ) {
-				System.err.println("Timeout when connecting for song ID " + line + ", skip it.");
-			}
-			
+			si = parseURL(url); //call parsing method
+			si.setSongID(Long.parseLong(line)); // set the song id
+			si.setLyric(si.getLyric().replaceAll("\r|\n", "")); //replace new lines
+			out.write(si.toString());
+
 			i++;
 		}
 		
@@ -68,11 +64,12 @@ public class FetchSongInfo {
 			si.setArtist(doc.select("#albums_info a[href*=artist]").first().html());
 			si.setLyric(doc.getElementsByClass("lrc_main").first().html());
 		} catch ( org.jsoup.HttpStatusException e ) {
-			System.out.println("Looks like page is no longer there: " + url);
-		}
-		catch ( Exception e ) {
-			System.out.println("Cannot get enough info from url: " + url);
-		}
+			System.err.println("Looks like page is no longer there: " + url);
+		} catch( java.net.SocketTimeoutException e ) {
+			System.err.println("Timeout when connecting " + url);
+		} catch ( Exception e ) {
+			System.err.println("Cannot get enough info from url: " + url);
+		} 
 		
 		return si;
 	}
