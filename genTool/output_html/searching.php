@@ -1,14 +1,10 @@
 <?php
 $search_word = trim($_GET['search_word']);
-$search_type = trim($_GET['search_type']);
 
-if ( !$search_word || !$search_type ) {
+if ( !$search_word ) {
 	exit;
 }
 
-if ( $search_type == '全部' ) {
-	$search_type = "";
-}
 
 $search_word = addslashes($search_word);
 $keyword_list = split(' ', $search_word, 20);
@@ -21,7 +17,7 @@ $join_query = " from f_topic t
    on   t.topic_type_id = d.topic_type_id
    join f_topic_list l
    on   t.topic_id = l.topic_id
-   where d.topic_type_desc like '%$search_type%'";
+";
 
 $where_query = " and locate('$keyword_list[0]', concat(topic_name,list_name,list_desc,topic_tags)) > 0";
 

@@ -6,8 +6,7 @@
 <ul id="nav"><li><a href="/" >首页</a></li><li><a href="/music" >音乐</a></li><li><a href="/mv" >影音</a></li><li><a href="/soccer" >足球</a></li><li><a href="/fun" >有趣</a></li><li><a href="/software" >软件</a></li><li><a href="/blog" >博客</a></li><li><a href="/others" >其他</a></li></ul>
 <div id="main"><div id="header"><canvas id="logo" width="380" height="100"><img src="/images/logo.png" alt="im633" ></canvas><div id="bwBox"><h3 id="bw"><?php include("getPoem.php"); ?></h3></div></div>
 <div id="bdy"><div id="left_panel"><div id="musicPlayer"><?php include("randomListen.php");?></div><ul id="randomListen"><li>随便听听</li></ul>
-<div id="searchBox"><form id="searchForm"><input type="search" name="search_word" maxlength="2048" size="28"/>
-<select name="search_type"><option>全部</option><option>音乐</option><option>影音</option><option>足球</option><option>有趣</option><option>软件</option><option>博客</option><option>其他</option></select>
+<div id="searchBox"><form id="searchForm"><input type="search" name="search_word" placeholder="输入关键字搜索或随便听听" maxlength="2048" size="20"/>
 <input type="submit" name="submit_search" value="搜索" /></form></div><div id="searchResult"></div></div><div id="topicBox">
 <div id="topic1" class="topic">
 <span class="time">2012-05-13 00:00:00</span>

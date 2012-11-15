@@ -1,0 +1,256 @@
+* html #nav {
+    position: absolute;
+} /* Fixed Positioning in IE6 */
+
+a {
+    text-decoration: none;
+    color: blue;
+    outline: none;
+}
+
+a.topicTitle {
+    text-shadow: 1px 1px #FFE0E0;
+}
+
+a.topicTitle:hover,#searchResult a:hover {
+    color: #02A817;
+    text-shadow: 1px 1px 1px #FFE0E0;
+}
+
+body {
+    margin: auto;
+    padding: 10px;
+    color: #333333;
+    background-image: url('../images/bg.png');
+    font-family: 'ubuntu mono',微软雅黑,宋体;
+}
+
+div#main {
+    width: 1000px;
+    margin: auto;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+#header,#bdy{
+    width: 1000px;
+    margin: 0px;
+    padding:10px;
+    height: 120px;
+}
+
+#bdy {
+height: 100%;
+margin-bottom: 50px;
+overflow: auto;
+}
+
+#contact {
+	padding: 5px 100px;
+	text-shadow: 1px 1px 5px #ff0000;
+	margin-bottom: 50px;
+}
+
+#bwBox {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    _height: 80px;
+    margin: auto;
+    padding-left: 50px;
+    padding-top: 20px;
+    width: 550px;
+    height: 100px;
+    vertical-align: top;
+    font-family: 'Comic Sans MS',华文行楷,华文隶书,楷体,隶书,微软雅黑,宋体;
+}
+
+#bw {
+    margin: 2px 5px 10px 5px;
+}
+
+span.music {
+    display: inline-block;
+    zoom: 1;
+    *display: inline;
+    _height: 80px;
+    margin: auto;
+    width: 500px;
+    height: 100px;
+    vertical-align:top;
+}
+
+
+#nav {
+    position: fixed;
+   margin: 0px;
+   padding: 0px;
+   top: 50px;
+   left: 0px;
+   list-style: none;
+   z-index:99;
+}
+
+ul#nav li{
+    width: 125px;
+}
+
+ul#nav li a {
+   font-size: 30px;
+   text-decoration: none;
+   text-align: center;
+   display: block;
+   margin-left: -2px;
+   width: 125px;
+   height: 50px;
+   padding-top: 10px;
+   color: #ffffff;
+   background-color: black;
+   background-repeat:no-repeat;
+   background-position:center center;
+   border:1px solid #AFAFAF;
+   border-radius: 0px 10px 10px 0px;
+   opacity: 0.6;
+}
+
+canvas {
+    border:1px solid #aaaaaa;
+}
+
+#left_panel {
+  width: 250px;
+  height: 100%;
+  float: left;
+  padding: 5px
+}
+
+#musicPlayer {
+    height: 380px;
+    margin: 0px;
+    padding: 0px;
+}
+
+#musicPlayer embed{
+    width: 250px;
+    height: 320px;
+    overflow: hidden;
+}
+
+#topicBox {
+    width: 700px;
+    margin-left: 20px;
+    height: 100%;
+    float: right;
+	padding: 5px;
+}
+
+.albumImage {
+    width: 150px;
+    height: 150px;
+}
+
+div.topic {
+    padding: 2px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    box-shadow: inset 0 0 10px #000000;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+div.topic:hover {
+    background-color: #E6F3FF;
+}
+
+ul.list li,a.pagelinks {
+   display: inline-block;
+   *display: inline;
+   background-color: #99CCFF;
+   padding: 2px;
+   margin: 2px;
+   cursor: pointer;
+   box-shadow: 1px 1px 2px 1px #5F9FFF;
+   list-style: none;
+}
+
+a.pagelinks {
+	padding: 2px 5px;
+}
+
+ul.list li:hover,a.pagelinks:hover {
+   background-color: #85ADFF;
+}
+
+a#currentpagelinks {
+    background-color: #FFC2E0;
+}
+
+.time {
+    float: right;
+    padding: 5px;
+    color: #F5821D;
+    font-size: small;
+}
+
+#searchBox {
+	text-align: center;	
+	margin-top: 25px;
+}
+
+#searchResult img {
+	margin-left: 100px;	
+}
+
+.videoWrapper {
+	width: 680px;
+	height: 480px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.albumImageWrapper {
+	width: 150px;
+	height: 150px;
+	margin: 0px;
+	padding: 0px;
+	display: inline-block;
+   *display: inline;
+}
+
+a img {
+	border: none;	
+}
+
+ul#randomListen {
+	list-style: none;
+}
+
+ul#randomListen li,input[type="submit"] {
+	background: #222;
+   display: inline-block;
+   padding: 5px 10px 6px;
+   color: #fff;
+   border-radius: 6px;
+   text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+   box-shadow: 1px 1px 2px 1px #5F9FFF;
+   border-bottom: 1px solid rgba(0,0,0,0.25);
+   position: relative;
+   cursor: pointer;
+   width: 130px;
+   text-align: center;
+}
+
+input[type="submit"] {
+	width: 55px;
+}
+
+ul#randomListen li:hover,input[type="submit"]:hover {
+	background-color: #2981e4;
+}
+
+input[type="search"] {
+    height: 28px;
+}
+
+

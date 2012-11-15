@@ -638,8 +638,7 @@ void print_doc_head( FILE ** output_file, int topic_type_id, char * html_title, 
     fprintf(output_file[topic_type_id], "<ul id=\"nav\"><li><a href=\"/\" >首页</a></li><li><a href=\"/music\" >音乐</a></li><li><a href=\"/mv\" >影音</a></li><li><a href=\"/soccer\" >足球</a></li><li><a href=\"/fun\" >有趣</a></li><li><a href=\"/software\" >软件</a></li><li><a href=\"/blog\" >博客</a></li><li><a href=\"/others\" >其他</a></li></ul>\n");
     fprintf(output_file[topic_type_id], "<div id=\"main\"><div id=\"header\"><canvas id=\"logo\" width=\"380\" height=\"100\"><img src=\"/images/logo.png\" alt=\"im633\" ></canvas><div id=\"bwBox\"><h3 id=\"bw\"><?php include(\"getPoem.php\"); ?></h3></div></div>\n");
     fprintf(output_file[topic_type_id], "<div id=\"bdy\"><div id=\"left_panel\"><div id=\"musicPlayer\"><?php include(\"randomListen.php\");?></div><ul id=\"randomListen\"><li>随便听听</li></ul>\n");
-    fprintf(output_file[topic_type_id], "<div id=\"searchBox\"><form id=\"searchForm\"><input type=\"search\" name=\"search_word\" maxlength=\"2048\" size=\"28\"/>\n");
-    fprintf(output_file[topic_type_id], "<select name=\"search_type\"><option>全部</option><option>音乐</option><option>影音</option><option>足球</option><option>有趣</option><option>软件</option><option>博客</option><option>其他</option></select>\n");
+    fprintf(output_file[topic_type_id], "<div id=\"searchBox\"><form id=\"searchForm\"><input type=\"search\" name=\"search_word\" placeholder=\"输入关键字搜索或随便听听\" maxlength=\"2048\" size=\"20\"/>\n");
     fprintf(output_file[topic_type_id], "<input type=\"submit\" name=\"submit_search\" value=\"搜索\" /></form></div><div id=\"searchResult\"></div></div><div id=\"topicBox\">\n");
 }
 
@@ -670,12 +669,7 @@ void get_topic_count( FILE * all_topic_fp, int topic_count[], int topic_seq[][NO
         topic_seq[i][index[i]] = INVALID_TOPICID;
     }
 }
-
-/*
-* The pop_topic_record function
-* The function get the data from a line in the all topic file
-* and populate the structure variable
-*/
+ 
  
 void pop_topic_record(char * line, topic_info_t * topic) {
     char * all_field[ALL_TOPIC_FIELDSNUM];
