@@ -1,3 +1,9 @@
+function space_remove(name) {
+    name = name.replace(/\++/g, '+'); // convert (continuous) whitespaces to one -
+	 name = name.replace(/^\++|\++$/g, ''); // remove leading and trailing whitespaces
+    return name;
+}
+
 $(function() {
  
  $('#nav a').stop().animate({'marginLeft':'-110px'},1500);
@@ -30,7 +36,8 @@ $(function() {
 ;
 
 $('#randomListen li').click(function() {
-	$('#musicPlayer').load("randomListen.php", "autoplay=1");
+	//search_word=$('input[type="search"]').text();
+	$('#musicPlayer').load("randomListen.php", "autoplay=1&" + space_remove($('#searchForm').serialize()));
 	});
 
 var $scrollingDiv = $("#left_panel");
