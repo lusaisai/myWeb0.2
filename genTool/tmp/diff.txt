@@ -1,11 +1,2 @@
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/blog/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/blog/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/fun/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/fun/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/others/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/others/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/php/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/php/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/soccer/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/soccer/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/software/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/software/randomListen.php differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/topics/randomListen.php and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/topics/randomListen.php differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/css/main.css and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/css/main.css differ
 Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html: upload.tar.gz

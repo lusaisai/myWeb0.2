@@ -22,7 +22,7 @@ body {
     padding: 10px;
     color: #333333;
     background-image: url('../images/bg.png');
-    font-family: 'ubuntu mono',微软雅黑,宋体;
+    font-family: 'ubuntu mono',微软雅黑,'WenQuanYi Micro Hei Mono',宋体;
 }
 
 div#main {
@@ -63,7 +63,9 @@ overflow: auto;
     width: 550px;
     height: 100px;
     vertical-align: top;
-    font-family: 'Comic Sans MS',华文行楷,华文隶书,楷体,隶书,微软雅黑,宋体;
+    font-family: 'Comic Sans MS',华文行楷,华文隶书,楷体,隶书,微软雅黑,'WenQuanYi Micro Hei Mono',宋体;
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #009900, 0 0 5px #009900, 0 0 8px #009900, 0 0 10px #009900, 0 0 15px #009900;
+    color: #FFFFD6;
 }
 
 #bw {
