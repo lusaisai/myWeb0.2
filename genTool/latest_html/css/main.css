@@ -159,10 +159,15 @@ div.topic {
     box-shadow: inset 0 0 10px #000000;
     border-radius: 5px;
     margin: 20px 0;
+    background: -o-linear-gradient( #E8FCEA, #ffffff );
+    background: -moz-linear-gradient( #E8FCEA, #ffffff );
+    background: -webkit-linear-gradient( #E8FCEA, #ffffff );
 }
 
 div.topic:hover {
-    background-color: #E6F3FF;
+    background: -o-linear-gradient( #FAF7D9, #ffffff );
+    background: -moz-linear-gradient( #FAF7D9, #ffffff );
+    background: -webkit-linear-gradient( #FAF7D9, #ffffff );
 }
 
 ul.list li,a.pagelinks {

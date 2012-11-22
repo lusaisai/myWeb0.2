@@ -65,7 +65,7 @@ overflow: auto;
     vertical-align: top;
     font-family: 'Comic Sans MS',华文行楷,华文隶书,楷体,隶书,微软雅黑,'WenQuanYi Micro Hei Mono',宋体;
     text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 3px #fff, 0 0 4px #009900, 0 0 5px #009900, 0 0 8px #009900, 0 0 10px #009900, 0 0 15px #009900;
-    color: white;
+    color: #FFFFD6;
 }
 
 #bw {
@@ -159,6 +159,9 @@ div.topic {
     box-shadow: inset 0 0 10px #000000;
     border-radius: 5px;
     margin: 20px 0;
+    background: -o-linear-gradient( #E8FCEA, #ffffff );
+    background: -moz-linear-gradient( #E8FCEA, #ffffff );
+    background: -webkit-linear-gradient( #E8FCEA, #ffffff );
 }
 
 div.topic:hover {
