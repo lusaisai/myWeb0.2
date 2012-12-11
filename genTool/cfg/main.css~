@@ -23,6 +23,7 @@ body {
     color: #333333;
     background-image: url('../images/bg.png');
     font-family: 'ubuntu mono',微软雅黑,'WenQuanYi Micro Hei Mono',宋体;
+    opacity: 0.8;
 }
 
 div#main {
@@ -165,7 +166,9 @@ div.topic {
 }
 
 div.topic:hover {
-    background-color: #E6F3FF;
+    background: -o-linear-gradient( #FAF7D9, #ffffff );
+    background: -moz-linear-gradient( #FAF7D9, #ffffff );
+    background: -webkit-linear-gradient( #FAF7D9, #ffffff );
 }
 
 ul.list li,a.pagelinks {
