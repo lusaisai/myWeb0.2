@@ -23,7 +23,6 @@ body {
     color: #333333;
     background-image: url('../images/bg.png');
     font-family: 'ubuntu mono',微软雅黑,'WenQuanYi Micro Hei Mono',宋体;
-    opacity: 0.88;
 }
 
 div#main {
