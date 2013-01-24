@@ -1,0 +1,3 @@
+$( function() {
+$('#list402').mouseover(function() {$('#topic86 img').attr('src', 'http://img.xiami.com/images/album/img70/58270/3348971341226006_2.jpg');$('#topic86 span.listtxt').html('空灵清亮，细腻甜美的嗓音确实让人有种漫步云端的感觉～');});
+$('#list402').click(function() {$('#musicPlayer').html('<h3>Walking in the Air</h3><embed src="http://www.xiami.com/widget/4097932_1768966083,1768966090,1768966084,1768966085,1768966086,1768966087,1768966088,1768966089,1768966091,1768966092,1768966093,1768966094,1768966095,1768966096,1768966097,_235_346_000000_494949_1/multiPlayer.swf" type="application/x-shockwave-flash" width="235" height="346" wmode="opaque"></embed>');$('#topic86 li').css('color', '#000000');$('#list402').css('color', '#CC0052');});});
