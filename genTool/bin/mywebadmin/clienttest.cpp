@@ -5,12 +5,6 @@
  *      Author: lusaisai
  */
 
-/*
- * testclient.cpp
- *
- *  Created on: Jan 24, 2013
- *      Author: lusaisai
- */
 
 #include "topictype.hpp"
 #include "topic.hpp"
@@ -20,7 +14,7 @@
 
 using namespace Im633;
 
-int main(int argc, char *argv[]) {
+int test_main(int argc, char *argv[]) {
 	unsigned int id(5);
 	//std::cout << "Please enter a number between 1 and 7: ";
 	//std::cin >> id;
@@ -50,8 +44,28 @@ int main(int argc, char *argv[]) {
 	md.topic_update(a);
 	md.list_delete(l);
 	md.list_insert(l);
-	l.set_list_name("ah ha, updated");
+	l.set_list_name("用以描述一个或多个制造件的生产加工过程");
 	md.list_update(l);
-	md.list_delete(l);
+	//md.list_delete(l);
+	std::cout << md.max_topic_id() << std::endl;
+	//md.fetch_topic(800).print_data();
+
+//	std::set<topic> topics(md.fetch_topic());
+//	for (auto it=topics.begin(); it != topics.end(); ++it) {
+//		(*it).print_data();
+//	}
+
+/*	md.fetch_list(255).print_data();
+	std::set<list> lists(md.fetch_list(md.fetch_topic(66)));
+	for ( auto it = lists.begin(); it != lists.end(); ++it ) {
+		(*it).print_data();
+	}*/
+
+	std::cout << md.query("select current_timestamp(0)")[0][0];
+
+	md.new_topic( topictype::get_topictype(2) ).print_data();
+	md.new_list(a).print_data();
+
+	return 0;
 }
 

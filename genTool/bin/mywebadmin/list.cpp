@@ -7,6 +7,7 @@
 
 #include "list.hpp"
 #include <string>
+#include <iostream>
 
 using namespace Im633;
 
@@ -25,18 +26,28 @@ list::list(unsigned int id, unsigned int topic_id):
 
 }
 
+void list::print_data() const {
+	std::cout << "list id: " << id << std::endl;
+	std::cout << "topic id: " << topic_id << std::endl;
+	std::cout << "list name: " << list_name << std::endl;
+	std::cout << "list description: " << list_desc << std::endl;
+	std::cout << "list image: " << list_image_loc << std::endl;
+	std::cout << "list outer link: " << list_outer_link << std::endl;
+	std::cout << "list other link: " << list_other_link << std::endl;
+}
+
 /*
  * The operators
  * */
-bool operator==(const list &lhs, const list &rhs) {
+bool Im633::operator==(const list &lhs, const list &rhs) {
 	return lhs.get_id() == rhs.get_id();
 }
 
-bool operator!=(const list &lhs, const list &rhs) {
+bool Im633::operator!=(const list &lhs, const list &rhs) {
 	return lhs.get_id() != rhs.get_id();
 }
 
-bool operator<(const list &lhs, const list &rhs) {
+bool Im633::operator<(const list &lhs, const list &rhs) {
 	return lhs.get_id() < rhs.get_id();
 }
 

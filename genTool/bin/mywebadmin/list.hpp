@@ -29,6 +29,9 @@ public:
 	list(unsigned int id, unsigned int topic_id);
 	~list() = default;
 
+	// print what the list looks like
+	void print_data() const;
+
 	unsigned int get_id() const;
 	void set_id(unsigned int id);
 	const std::string& get_list_desc() const;

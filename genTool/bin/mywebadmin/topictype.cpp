@@ -25,11 +25,11 @@ topictype topictype::blog(6,"blog");
 topictype topictype::others(7,"others");
 
 // The equality operator
-bool operator==(const topictype &lhs, const topictype &rhs){
+bool Im633::operator==(const topictype &lhs, const topictype &rhs){
 	return lhs.get_id() == rhs.get_id();
 }
 
-bool operator!=(const topictype &lhs, const topictype &rhs){
+bool Im633::operator!=(const topictype &lhs, const topictype &rhs){
 	return lhs.get_id() != rhs.get_id();
 }
 

@@ -26,6 +26,10 @@ public:
 	~topic() = default;
 	topic(unsigned int topic_id, unsigned int topic_type_id);
 
+	// print what the topic looks like
+	void print_data() const;
+
+	// The setters and getters
 	unsigned int get_id() const;
 	void set_id(unsigned int id);
 	const std::string& get_topic_name() const;

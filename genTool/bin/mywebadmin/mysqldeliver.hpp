@@ -13,6 +13,7 @@
 #include "topic.hpp"
 #include "list.hpp"
 #include <string>
+#include <set>
 #include <mysql++/mysql++.h>
 
 
@@ -29,14 +30,26 @@ public:
 	~mysqldeliver() = default;
 
 	// Operations on topic table
-	void topic_insert(const topic & topic);
-	void topic_delete(const topic & topic);
-	void topic_update(const topic & topic);
+	void topic_insert(const topic & topic); // insert into database
+	void topic_delete(const topic & topic); // delete from database
+	void topic_update(const topic & topic); // update into database
+	unsigned int max_topic_id();
+	topic fetch_topic(const unsigned int topic_id); //fetch data from database and constructs an topic object
+	std::set<topic> fetch_topic(const topictype & tt); // Given a topic type, constructs a set of topic objects
+	std::set<topic> fetch_topic(); // Constructs a set of all existing topic objects
+	topic new_topic(const topictype & tt); // create a new topic, the topic id will be max + 1
 
 	// Operations on list table
 	void list_insert(const list & list);
 	void list_delete(const list & list);
 	void list_update(const list & list);
+	unsigned int max_list_id();
+	list fetch_list(const unsigned int list_id); //fetch data from database and constructs an list object
+	std::set<list> fetch_list(const topic & topic); // Given a topic, fetch data from database and constructs a set of list objects
+	list new_list(const topic & topic); // create a new list, the list_id is max + 1
+
+	// The normal method to run any query and handle the result by yourself
+	mysqlpp::StoreQueryResult query(std::string text);
 
 	// member setters and getters
 	const mysqlpp::Connection& get_conn() const;

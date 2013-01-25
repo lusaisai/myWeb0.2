@@ -8,12 +8,13 @@
 #include "topic.hpp"
 #include "topictype.hpp"
 #include <string>
+#include <iostream>
 
 using namespace Im633;
 
 // Constructor
 topic::topic(unsigned int topic_id, unsigned int topic_type_id, std::string name, std::string tags, std::string recom_flag):
-	id(topic_id), topic_name(name),  topic_recom_flag(recom_flag), topic_tags(tags) {
+	id(topic_id), topic_name(name), topic_tags(tags), topic_recom_flag(recom_flag) {
 	topic_type = &topictype::get_topictype(topic_type_id);
 }
 
@@ -22,16 +23,25 @@ topic::topic(unsigned int topic_id, unsigned int topic_type_id):
 	topic_type = &topictype::get_topictype(topic_type_id);
 }
 
+// Print the topic to cout
+void topic::print_data() const {
+	std::cout << "topic id: " << id << std::endl;
+	std::cout << "topic type: " << topic_type->get_type_name() << std::endl;
+	std::cout << "topic name: " << topic_name << std::endl;
+	std::cout << "topic tags: " << topic_tags << std::endl;
+	std::cout << "topic recommend flag: " << topic_recom_flag << std::endl;
+}
+
 // operators
-bool operator==(const topic &lhs, const topic &rhs) {
+bool Im633::operator==(const topic &lhs, const topic &rhs) {
 	return lhs.get_id() == rhs.get_id();
 }
 
-bool operator!=(const topic &lhs, const topic &rhs) {
+bool Im633::operator!=(const topic &lhs, const topic &rhs) {
 	return lhs.get_id() != rhs.get_id();
 }
 
-bool operator<(const topic &lhs, const topic &rhs) {
+bool Im633::operator<(const topic &lhs, const topic &rhs) {
 	return lhs.get_id() < rhs.get_id();
 }
 

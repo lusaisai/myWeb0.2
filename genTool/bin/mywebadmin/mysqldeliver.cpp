@@ -6,6 +6,7 @@
  */
 
 #include "mysqldeliver.hpp"
+#include <stdexcept>
 
 using namespace Im633;
 
@@ -52,7 +53,71 @@ void mysqldeliver::topic_update(const topic & topic){
 	std::cout << res.rows() << " record updated." << std::endl;
 }
 
-// Operations on list table
+unsigned int mysqldeliver::max_topic_id() {
+	mysqlpp::Query query = conn.query();
+	query << "select coalesce(max(topic_id),0) max_id from " << topic_table_name << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+	return res[0][0];
+}
+
+// Given a topic id, get the object from database
+topic mysqldeliver::fetch_topic(const unsigned int topic_id) {
+	mysqlpp::Query query = conn.query();
+	query << "select * from " << topic_table_name << " where topic_id = " << topic_id << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+	if ( res.num_rows() == 0 ) throw std::runtime_error("No such a topic id!");
+	return topic(static_cast<unsigned int>(res[0][0]), static_cast<unsigned int>(res[0][1])
+			, static_cast<std::string>(res[0][2]), static_cast<std::string>(res[0][3])
+			, static_cast<std::string>(res[0][4]));
+}
+
+// Given a topic type, get all the topics of that kind from database
+std::set<topic> mysqldeliver::fetch_topic(const topictype & tt) {
+	std::set<topic> topics;
+	mysqlpp::Query query = conn.query();
+	query << "select * from " << topic_table_name << " where topic_type_id = " << tt.get_id() << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+
+	for (size_t i = 0; i < res.num_rows(); ++i) {
+		topics.insert(topic(static_cast<unsigned int>(res[i][0]), static_cast<unsigned int>(res[i][1])
+				, static_cast<std::string>(res[i][2]), static_cast<std::string>(res[i][3])
+				, static_cast<std::string>(res[i][4])));
+	}
+
+	return topics;
+}
+
+// Get all the topics from database
+std::set<topic> mysqldeliver::fetch_topic() {
+	std::set<topic> topics;
+	mysqlpp::Query query = conn.query();
+	query << "select * from " << topic_table_name << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+
+	for (size_t i = 0; i < res.num_rows(); ++i) {
+		topics.insert(topic(static_cast<unsigned int>(res[i][0]), static_cast<unsigned int>(res[i][1])
+				, static_cast<std::string>(res[i][2]), static_cast<std::string>(res[i][3])
+				, static_cast<std::string>(res[i][4])));
+	}
+
+	return topics;
+}
+
+topic mysqldeliver::new_topic(const topictype & tt) {
+	return topic(max_topic_id() + 1, tt.get_id());
+}
+
+
+/*
+ * Operations on list table
+ * */
+unsigned int mysqldeliver::max_list_id() {
+	mysqlpp::Query query = conn.query();
+	query << "select coalesce(max(list_id),0) max_id from " << list_table_name << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+	return res[0][0];
+}
+
 void mysqldeliver::list_insert(const list & list){
 	mysqlpp::Query query = conn.query();
 	query << "insert into " << list_table_name << " values (%0,%1,%2q,%3q,%4q,%5q,%6q,CURRENT_TIMESTAMP);";
@@ -82,6 +147,43 @@ void mysqldeliver::list_update(const list & list){
 	std::cout << res.rows() << " record updated." << std::endl;
 }
 
+list mysqldeliver::fetch_list(const unsigned int list_id) {
+	mysqlpp::Query query = conn.query();
+	query << "select * from " << list_table_name << " where list_id = " << list_id << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+	if ( res.num_rows() == 0 ) throw std::runtime_error("No such a list id!");
+	return list(static_cast<unsigned int>(res[0][0]), static_cast<unsigned int>(res[0][1])
+			, static_cast<std::string>(res[0][2]), static_cast<std::string>(res[0][3])
+			, static_cast<std::string>(res[0][4]), static_cast<std::string>(res[0][5])
+			, static_cast<std::string>(res[0][6]));
+}
+
+std::set<list> mysqldeliver::fetch_list(const topic & topic) {
+	std::set<list> lists;
+	mysqlpp::Query query = conn.query();
+
+	query << "select * from " << list_table_name << " where topic_id = " << topic.get_id() << ";";
+	mysqlpp::StoreQueryResult res = query.store();
+
+	for (size_t i = 0; i < res.num_rows(); ++i) {
+		lists.insert( list(static_cast<unsigned int>(res[0][0]), static_cast<unsigned int>(res[0][1])
+				, static_cast<std::string>(res[0][2]), static_cast<std::string>(res[0][3])
+				, static_cast<std::string>(res[0][4]), static_cast<std::string>(res[0][5])
+				, static_cast<std::string>(res[0][6])) );
+	}
+
+	return lists;
+}
+
+list mysqldeliver::new_list(const topic & topic) {
+	return list( max_list_id() + 1, topic.get_id() );
+}
+
+// The normal method to run any query and handle the result by yourself
+mysqlpp::StoreQueryResult mysqldeliver::query(std::string text) {
+	mysqlpp::Query query = conn.query(text);
+	return query.store();
+}
 
 /*
  * The setters and getters
