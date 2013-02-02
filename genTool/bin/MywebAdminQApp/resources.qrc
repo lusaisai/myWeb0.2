@@ -2,5 +2,7 @@
     <qresource prefix="/">
         <file>images/network_server_database.png</file>
         <file>images/refresh.png</file>
+        <file>images/exit.png</file>
+        <file>images/info.png</file>
     </qresource>
 </RCC>

@@ -6,16 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>769</width>
-    <height>809</height>
+    <width>879</width>
+    <height>886</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MywebAdminQApp</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QGridLayout" name="gridLayout_5">
-    <item row="0" column="0" colspan="2">
+   <layout class="QGridLayout" name="gridLayout_6">
+    <item row="0" column="0">
      <widget class="QGroupBox" name="topicGroupBox">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -26,18 +26,45 @@
       <property name="title">
        <string>Topic</string>
       </property>
-      <layout class="QGridLayout" name="gridLayout_2">
-       <item row="0" column="0">
-        <widget class="QTableView" name="topicTableView">
-         <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-        </widget>
+      <layout class="QGridLayout" name="gridLayout_5">
+       <item row="0" column="0" rowspan="2">
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Maximum" vsizetype="Preferred">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Filter:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QLineEdit" name="filterLineEdit">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QTableView" name="topicTableView">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
-       <item row="0" column="1">
+       <item row="1" column="1">
         <layout class="QGridLayout" name="gridLayout">
          <item row="1" column="0">
           <widget class="QLabel" name="topicType">
@@ -53,7 +80,43 @@
           <widget class="QLineEdit" name="topicTagEdit"/>
          </item>
          <item row="1" column="1">
-          <widget class="QComboBox" name="topicTypeComboBox"/>
+          <widget class="QComboBox" name="topicTypeComboBox">
+           <item>
+            <property name="text">
+             <string>music</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>video</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>soccer</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>fun</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>software</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>blog</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>others</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item row="3" column="0">
           <widget class="QLabel" name="topicTags">
@@ -110,51 +173,55 @@
      </widget>
     </item>
     <item row="1" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="QPushButton" name="addTopicButton">
-        <property name="text">
-         <string>Add Topic</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QPushButton" name="addTopicButton">
+          <property name="text">
+           <string>Add Topic</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deleteTopicButton">
+          <property name="text">
+           <string>Delete Topic</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="EditTopicButton">
+          <property name="text">
+           <string>Edit Topic</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveTopicButton">
+          <property name="text">
+           <string>Save Topic</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="deleteTopicButton">
-        <property name="text">
-         <string>Delete Topic</string>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="EditTopicButton">
-        <property name="text">
-         <string>Edit Topic</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>248</width>
+          <height>20</height>
+         </size>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="saveTopicButton">
-        <property name="text">
-         <string>Save Topic</string>
-        </property>
-       </widget>
+       </spacer>
       </item>
      </layout>
     </item>
-    <item row="1" column="1">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>375</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="2" column="0" colspan="2">
+    <item row="2" column="0">
      <widget class="QGroupBox" name="listGroupBox">
       <property name="title">
        <string>List</string>
@@ -163,7 +230,7 @@
        <item row="0" column="0">
         <widget class="QTableView" name="listTableView">
          <property name="sizePolicy">
-          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -248,49 +315,53 @@
      </widget>
     </item>
     <item row="3" column="0">
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_4">
       <item>
-       <widget class="QPushButton" name="addListButton">
-        <property name="text">
-         <string>Add List</string>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QPushButton" name="addListButton">
+          <property name="text">
+           <string>Add List</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deleteListButton">
+          <property name="text">
+           <string>Delete List</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="EditListButton">
+          <property name="text">
+           <string>Edit List</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="saveListButton">
+          <property name="text">
+           <string>Save List</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <widget class="QPushButton" name="deleteListButton">
-        <property name="text">
-         <string>Delete List</string>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="EditListButton">
-        <property name="text">
-         <string>Edit List</string>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>375</width>
+          <height>20</height>
+         </size>
         </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QPushButton" name="saveListButton">
-        <property name="text">
-         <string>Save List</string>
-        </property>
-       </widget>
+       </spacer>
       </item>
      </layout>
-    </item>
-    <item row="3" column="1">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>375</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
     </item>
    </layout>
   </widget>
@@ -299,7 +370,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>769</width>
+     <width>879</width>
      <height>25</height>
     </rect>
    </property>

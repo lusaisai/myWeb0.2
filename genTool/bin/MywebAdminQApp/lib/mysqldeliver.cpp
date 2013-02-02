@@ -24,22 +24,22 @@ mysqldeliver::mysqldeliver(const char * db, std::string topic_table_name, std::s
  * The various mysql operations
  * */
 // Operations on topic table
-void mysqldeliver::topic_insert(const topic & topic) {
+int mysqldeliver::topic_insert(const topic & topic) {
 	mysqlpp::Query query = conn.query();
 	query << "insert into " << topic_table_name << " values (%0,%1,%2q,%3q,%4q,CURRENT_TIMESTAMP);";
 	query.parse();
 	mysqlpp::SimpleResult res = query.execute(topic.get_id(), topic.get_topic_type().get_id(), topic.get_topic_name(), topic.get_topic_tags(), topic.get_topic_recom_flag());
-	std::cout << res.rows() << " record inserted." << std::endl;
+    return res.rows();
 }
 
-void mysqldeliver::topic_delete(const topic & topic){
+int mysqldeliver::topic_delete(const topic & topic){
 	mysqlpp::Query query = conn.query();
 	query << "delete from " << topic_table_name << " where topic_id = " << topic.get_id() << ";";
 	mysqlpp::SimpleResult res = query.execute();
-	std::cout << res.rows() << " record deleted." << std::endl;
+    return res.rows();
 }
 
-void mysqldeliver::topic_update(const topic & topic){
+int mysqldeliver::topic_update(const topic & topic){
 	mysqlpp::Query query = conn.query();
 	query << "update " << topic_table_name << " set "
 			"topic_type_id = %1,"
@@ -50,7 +50,7 @@ void mysqldeliver::topic_update(const topic & topic){
 			"where topic_id = %0;";
 	query.parse();
 	mysqlpp::SimpleResult res = query.execute(topic.get_id(), topic.get_topic_type().get_id(), topic.get_topic_name(), topic.get_topic_tags(), topic.get_topic_recom_flag());
-	std::cout << res.rows() << " record updated." << std::endl;
+    return res.rows();
 }
 
 unsigned int mysqldeliver::max_topic_id() {
@@ -118,20 +118,20 @@ unsigned int mysqldeliver::max_list_id() {
 	return res[0][0];
 }
 
-void mysqldeliver::list_insert(const list & list){
+int mysqldeliver::list_insert(const list & list){
 	mysqlpp::Query query = conn.query();
 	query << "insert into " << list_table_name << " values (%0,%1,%2q,%3q,%4q,%5q,%6q,CURRENT_TIMESTAMP);";
 	query.parse();
 	mysqlpp::SimpleResult res = query.execute(list.get_id(),list.get_topic_id(),list.get_list_name(), list.get_list_desc(), list.get_list_image_loc(), list.get_list_outer_link(), list.get_list_other_link());
-	std::cout << res.rows() << " record inserted." << std::endl;
+    return res.rows();
 }
-void mysqldeliver::list_delete(const list & list){
+int mysqldeliver::list_delete(const list & list){
 	mysqlpp::Query query = conn.query();
 	query << "delete from " << list_table_name << " where list_id = " << list.get_id() << ";";
 	mysqlpp::SimpleResult res = query.execute();
-	std::cout << res.rows() << " record deleted." << std::endl;
+    return res.rows();
 }
-void mysqldeliver::list_update(const list & list){
+int mysqldeliver::list_update(const list & list){
 	mysqlpp::Query query = conn.query();
 	query << "update " << list_table_name << " set "
 			"topic_id = %1,"
@@ -144,7 +144,7 @@ void mysqldeliver::list_update(const list & list){
 			"where list_id = %0;";
 	query.parse();
 	mysqlpp::SimpleResult res = query.execute(list.get_id(),list.get_topic_id(),list.get_list_name(), list.get_list_desc(), list.get_list_image_loc(), list.get_list_outer_link(), list.get_list_other_link());
-	std::cout << res.rows() << " record updated." << std::endl;
+    return res.rows();
 }
 
 list mysqldeliver::fetch_list(const unsigned int list_id) {
@@ -166,10 +166,10 @@ std::set<list> mysqldeliver::fetch_list(const topic & topic) {
 	mysqlpp::StoreQueryResult res = query.store();
 
 	for (size_t i = 0; i < res.num_rows(); ++i) {
-		lists.insert( list(static_cast<unsigned int>(res[0][0]), static_cast<unsigned int>(res[0][1])
-				, static_cast<std::string>(res[0][2]), static_cast<std::string>(res[0][3])
-				, static_cast<std::string>(res[0][4]), static_cast<std::string>(res[0][5])
-				, static_cast<std::string>(res[0][6])) );
+        lists.insert( list(static_cast<unsigned int>(res[i][0]), static_cast<unsigned int>(res[i][1])
+                , static_cast<std::string>(res[i][2]), static_cast<std::string>(res[i][3])
+                , static_cast<std::string>(res[i][4]), static_cast<std::string>(res[i][5])
+                , static_cast<std::string>(res[i][6])) );
 	}
 
 	return lists;
