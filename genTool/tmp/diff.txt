@@ -18,16 +18,12 @@ Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/9.html and /home/l
 Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/css/topics.css and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/css/topics.css differ
 Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/feed/rss.xml and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/feed/rss.xml differ
 Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/index.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/index.html differ
-Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/js: topic_89.js
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/1.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/1.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/2.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/2.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/3.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/3.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/4.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/4.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/5.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/5.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/6.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/6.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/7.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/7.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/8.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/8.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/9.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/9.html differ
-Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/music/index.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/music/index.html differ
-Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/topics: topic_89.html
+Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/js: topic_90.js
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/1.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/1.html differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/2.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/2.html differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/3.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/3.html differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/4.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/4.html differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/5.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/5.html differ
+Files /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/mv/index.html and /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html/mv/index.html differ
+Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/output_html/topics: topic_90.html
 Only in /home/lusaisai/wwwLearning/myWeb0.2/genTool/latest_html: upload.tar.gz
