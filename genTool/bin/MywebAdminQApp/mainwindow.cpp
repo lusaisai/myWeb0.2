@@ -28,7 +28,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // the topic views
     topicFilter->setSourceModel(topicModel);
-    topicFilter->setDynamicSortFilter(true);
     ui->topicTableView->setModel(topicFilter);
     //ui->topicTableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
@@ -49,6 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect( ui->EditTopicButton, SIGNAL(clicked()), this, SLOT(edit_topic()) );
 
     connect( ui->topicTableView, SIGNAL(clicked(QModelIndex)), this, SLOT(load_lists()) );
+    connect( ui->topicTableView, SIGNAL(activated(QModelIndex)), this, SLOT(load_lists()) );
     connect( ui->addListButton, SIGNAL(clicked()), this, SLOT(new_list()) );
     connect( ui->saveListButton, SIGNAL(clicked()), this, SLOT(save_list()) );
     connect( ui->deleteListButton, SIGNAL(clicked()), this, SLOT(delete_list()) );
@@ -129,6 +129,7 @@ void MainWindow::load_lists() {
 
 void MainWindow::filter_topics( const QString & text ) {
     QRegExp regExp(text);
+    topicFilter->setDynamicSortFilter(true);
     topicFilter->setFilterKeyColumn(1);
     topicFilter->setFilterRegExp(regExp);
     topicFilter->setFilterCaseSensitivity(Qt::CaseInsensitive);
@@ -271,7 +272,7 @@ void MainWindow::edit_list() {
 * The util functions to get the current selected topic id and list id
 */
 int MainWindow::selectedTopicID() {
-    return topicModel->index( ui->topicTableView->currentIndex().row(), 0 ).data().toInt();
+    return topicFilter->index( ui->topicTableView->currentIndex().row(), 0 ).data().toInt();
 }
 
 int MainWindow::selectedListID() {
